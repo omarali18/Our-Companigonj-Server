@@ -19,14 +19,29 @@ async function run(){
     const database = client.db("Companigonj");
     const HospitalCollection = database.collection("Hospitals");
     const policeCollection = database.collection("Police");
+    const reviewCollection = database.collection("Review");
 
-
+    // Find all hospital
     app.get("/hospitals", async (req,res)=>{
       const result = await HospitalCollection.find({}).toArray()
       res.send(result)
     })
+
+    // Find all hospital
     app.get("/polices", async (req,res)=>{
       const result = await policeCollection.find({}).toArray()
+      res.send(result)
+    })
+
+    // post review
+    app.post("/review", async (req,res)=>{
+      const newReview = req.body
+      const result = await reviewCollection.insertOne(newReview)
+      res.send(result)
+    })
+    app.get("/review", async (req,res)=>{
+      const newReview = req.body
+      const result = await reviewCollection.find(newReview).toArray()
       res.send(result)
     })
 
