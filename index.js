@@ -24,25 +24,25 @@ async function run(){
     // Find all hospital
     app.get("/hospitals", async (req,res)=>{
       const result = await HospitalCollection.find({}).toArray()
-      res.send(result)
+      res.json(result)
     })
 
     // Find all hospital
     app.get("/polices", async (req,res)=>{
       const result = await policeCollection.find({}).toArray()
-      res.send(result)
+      res.json(result)
     })
 
     // post review
     app.post("/review", async (req,res)=>{
       const newReview = req.body
       const result = await reviewCollection.insertOne(newReview)
-      res.send(result)
+      res.json(result)
     })
     app.get("/review", async (req,res)=>{
       const newReview = req.body
       const result = await reviewCollection.find(newReview).toArray()
-      res.send(result)
+      res.json(result)
     })
 
   }
